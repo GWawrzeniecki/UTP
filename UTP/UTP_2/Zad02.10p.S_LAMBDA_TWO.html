@@ -1,0 +1,10 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0073)https://sdkp.pjwstk.edu.pl/html/staskshtml/S_LAMBDA_TWO/S_LAMBDA_TWO.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+  <title>S_LAMBDA_TWO</title></head>
+
+<body><span style="font-weight: bold;">Zadanie: ceny przelotów - lambda2</span><br><br>Lista <span style="font-style: italic;">dest</span> zawiera informacje o cenach przelotów w postaci napisów:<br><span style="font-style: italic;">port_wylotu port_przylotu cena_w_EUR<br><br></span>Należy
+utworzyć listę wynikową, której elementy będą opisywać ceny przelotów
+do poszczególnych miejsc (tylko) z Warszawy w PLN i wypisać na konsoli
+jej kolejne elementy, używając następującego programu:<br><br><pre>/*&lt;-- niezbędne importy */<br><br>public class Main {<br><br>  public static void main(String[] args) {<br>    // Lista destynacji: port_wylotu port_przylotu cena_EUR <br>    List&lt;String&gt; dest = Arrays.asList(<br>      "bleble bleble 2000",<br>      "WAW HAV 1200",<br>      "xxx yyy 789",<br>      "WAW DPS 2000",<br>      "WAW HKT 1000"<br>    );<br>    double ratePLNvsEUR = 4.30;<br>    List&lt;String&gt; result = <br>    /*&lt;-- tu należy dopisać fragment<br>     * przy czym nie wolno używać żadnych własnych klas, jak np. ListCreator<br>     * ani też żadnych własnych interfejsów<br>     */<br><br>    for (String r : result) System.out.println(r);<br>  }<br>}<br><br></pre>Plik Main.java wolno modyfikować tylko w miejscach oznaczonych /*&lt;-- &nbsp;*/, a program ma wyprowadzić na konsolę:<br><pre>to HAV - price in PLN:	5160<br>to DPS - price in PLN:	8600<br>to HKT - price in PLN:	4300<br></pre><br><pre></pre>
+</body></html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0075)https://sdkp.pjwstk.edu.pl/html/staskshtml/S_PROGRAMMERS/S_PROGRAMMERS.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+  <title>S_PROGRAMMERS</title></head>
+<body><br>Firma software'owa prowadzi projekty w różnych językach programowania.<br>Plik Prpgrammers.tsv z katalogu {user.home}&nbsp;zawiera informacje o programistach w postaci:<br><br>język1&lt;TAB&gt;nazwisko(1)&lt;TAB&gt;nazwisko(2)&lt;TAB&gt; itd<br>język2&lt;TAB&gt;nazwisko(1)&lt;TAB&gt;nazwisko(2)&lt;TAB&gt; itd<br>...<br><br>Stworzyć klasę ProgLang, mającą:<br><br><ul><li>konstruktor ProgLang(String nazwaPliku), w którym następuje wczytanie pliku o podanej nazwie,</li><li>metodę getLangsMap() - zwracająca mapę, w której pod kluczem nazwa języka znajduje się kolekcja programistów tego języka,</li><li>metodę
+getProgsMap() - zwracającą mapę, w której pod kluczem nazwisko
+programisty znajduje się kolekcja języków, w których programuje,</li><li>metodę
+getLangsMapSortedByNumOfProgs() &nbsp;- zwracającą mapę z
+wejściami&nbsp; język -&gt; kolekcja programistów. uporządkowaną
+malejąco według liczby osób znających poszczególne języki, w przypadku
+równej liczbu porządek jest alfabetyczny wg nazw języków,</li><li>metodę
+getProgsMapSortedByNumOfLangs() - zwracającą mapę z wejścimi
+programista -&gt; kolekcja językow, uporządkowaną malejąco wg liczby
+języków znanych programiści; w przypadku równej liczby porządek jest
+alfabetyczny wg nazwisk,</li><li>metodę
+getProgsMapForNumOfLangsGreaterThan(int n) - zwracającą mapę z
+wejściami programista -&gt; kolekcja języków, dla ktorych liczba
+języków jest większa od podanego n.</li><li>metodę <span style="font-weight: bold;">sorted(...)</span>,
+wołaną z argumentami mapa i lambda-wyrażenie. Metoda zwraca posortowaną
+wersję dowolnej mapy przekazanej jako piewrszy argument, a porządek
+sortowania jest określony przez lambda wyrażenia, podane jako drugi
+argument,</li><li>metodę f<span style="font-weight: bold;">iltered(...)</span>
+z argumentami: dowolna mapa i &nbsp;lambda. Metoda zwraca&nbsp; mapę,
+która zawiera tylko te wejścia z przekazanej jako pierwszy argument
+mapy, które spelniają warunek podany jako drugi argument (lambda z
+wynikiem typu boolean).</li></ul>Metod <span style="font-weight: bold;">sorted(...)</span> lub <span style="font-weight: bold;">filtered(...)</span>
+użyć w oprogramowaniu innych, odpowiednich, metod klasy. Mają one
+jednak ogólniejsze znaczenia, bo mogą być używane dla dowolnych innych
+map &nbsp;z warunkami sortowania czy filtrowania, zadawanymi przez
+własściwe w danych przypadkach&nbsp;lambdy.<br>Uwaga: uniwersalność metod sorted i filtered )możliwość ich zasobędzie sprawdzana<br><br><br>Poniższa klasa Main (ktorej w projekcie nie wolno modyfikować):<br><pre>import java.io.*;<br><br>public class Main {<br><br>  public static void main(String[] args) throws IOException {<br>    ProgLang pl = null;<br>    try {<br>      pl =  new ProgLang(System.getProperty("user.home") + "/Programmers.tsv");<br>    } catch (Exception exc) {<br>      System.out.println("Wadliwy konstruktor: " + exc);<br>    }<br>    System.out.println("@1 Mapa językow:");<br>    pl.getLangsMap().forEach((k,v)-&gt;System.out.println(k+ " = " + v));<br>    System.out.println("@2 Mapa programistów:");<br>    pl.getProgsMap().forEach((k,v)-&gt;System.out.println(k+ " = " + v));<br>    System.out.println("@3 Języki posortowane wg liczby programistów:");<br>    pl.getLangsMapSortedByNumOfProgs()<br>      .forEach((k,v)-&gt;System.out.println(k+ " = " + v));<br>    System.out.println("@4 Programiści posortowani wg liczby języków:");<br>    pl.getProgsMapSortedByNumOfLangs()<br>      .forEach((k,v)-&gt;System.out.println(k+ " = " + v));<br>    System.out.println("@5 Oryginalna mapa języków niezmieniona:");<br>    pl.getLangsMap().forEach((k,v)-&gt;System.out.println(k+ " = " + v));<br>    System.out.println("@6 Oryginalna mapa programistów niezmienione:");<br>    pl.getProgsMap().forEach((k,v)-&gt;System.out.println(k+ " = " + v));<br>    System.out.println("@7 Mapa programistów znających więcej niż 1 język:");<br>    pl.getProgsMapForNumOfLangsGreaterThan(1)<br>      .forEach((k,v)-&gt;System.out.println(k+ " = " + v));<br>    System.out.println("@8 Oryginalna mapa programistów nie jest zmieniona:");<br>    pl.getProgsMap().forEach((k,v)-&gt;System.out.println(k+ " = " + v));<br>  }<br><br>}<br><br><br></pre>dla nastepującej zawartości pliku Programmers.tsv:<br><br><pre>Groovy	Z	Y	X	D<br>Java	V	B	C	D	A	Z<br>C++	G	J	H<br>C#	P	S	Q	V	D<br>Scala	A	D	A</pre>(uwaga: sepratorami są znaki tabulacji)<br><br>wyprowadzi na konsolę wynik:<br><br><pre>@1 Mapa językow:<br>Groovy = [Z, Y, X, D]<br>Java = [V, B, C, D, A, Z]<br>C++ = [G, J, H]<br>C# = [P, S, Q, V, D]<br>Scala = [A, D]<br>@2 Mapa programistów:<br>Z = [Groovy, Java]<br>Y = [Groovy]<br>X = [Groovy]<br>D = [Groovy, Java, C#, Scala]<br>V = [Java, C#]<br>B = [Java]<br>C = [Java]<br>A = [Java, Scala]<br>G = [C++]<br>J = [C++]<br>H = [C++]<br>P = [C#]<br>S = [C#]<br>Q = [C#]<br>@3 Języki posortowane wg liczby programistów:<br>Java = [V, B, C, D, A, Z]<br>C# = [P, S, Q, V, D]<br>Groovy = [Z, Y, X, D]<br>C++ = [G, J, H]<br>Scala = [A, D]<br>@4 Programiści posortowani wg liczby języków:<br>D = [Groovy, Java, C#, Scala]<br>A = [Java, Scala]<br>V = [Java, C#]<br>Z = [Groovy, Java]<br>B = [Java]<br>C = [Java]<br>G = [C++]<br>H = [C++]<br>J = [C++]<br>P = [C#]<br>Q = [C#]<br>S = [C#]<br>X = [Groovy]<br>Y = [Groovy]<br>@5 Oryginalna mapa języków niezmieniona:<br>Groovy = [Z, Y, X, D]<br>Java = [V, B, C, D, A, Z]<br>C++ = [G, J, H]<br>C# = [P, S, Q, V, D]<br>Scala = [A, D]<br>@6 Oryginalna mapa programistów niezmienione:<br>Z = [Groovy, Java]<br>Y = [Groovy]<br>X = [Groovy]<br>D = [Groovy, Java, C#, Scala]<br>V = [Java, C#]<br>B = [Java]<br>C = [Java]<br>A = [Java, Scala]<br>G = [C++]<br>J = [C++]<br>H = [C++]<br>P = [C#]<br>S = [C#]<br>Q = [C#]<br>@7 Mapa programistów znających więcej niż 1 język:<br>Z = [Groovy, Java]<br>D = [Groovy, Java, C#, Scala]<br>V = [Java, C#]<br>A = [Java, Scala]<br>@8 Oryginalna mapa programistów nie jest zmieniona:<br>Z = [Groovy, Java]<br>Y = [Groovy]<br>X = [Groovy]<br>D = [Groovy, Java, C#, Scala]<br>V = [Java, C#]<br>B = [Java]<br>C = [Java]<br>A = [Java, Scala]<br>G = [C++]<br>J = [C++]<br>H = [C++]<br>P = [C#]<br>S = [C#]<br>Q = [C#]<br></pre><br><br><br><span style="font-weight: bold;">Ważne uwagi</span>:<br><br><ul><li>zgodność
+informacji wyjściowej z oczekiwanym wynikiem (w tym kolejność
+pokazywania danych)&nbsp; jest istotna - wynika z zastosowania
+odpowiednich map i innych klas kolekcyjnych, za niezgodność w
+którymkolwiek z punktów 1-8 będą odejmowane 2 punkty,</li><li>uniwersalność metod <span style="font-weight: bold;">sorted</span> i <span style="font-weight: bold;">filtered </span>(możliwość
+ich zastosowania dla innych niż w zadaniu map)&nbsp;będzie sprawdzana;
+brak uniwersalności każdej z metod skutkuje odjęciem 4 punktów,</li><li>w&nbsp;klasie ProgLang &nbsp;nie wolno używac surowych typów.</li></ul><br><br><br><br><br><br> 
+</body></html>
