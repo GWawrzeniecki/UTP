@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Wed Jun 13 22:43:55 CEST 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0163-fae3-fc54-000006e56a20 
+on database directory /Users/kogut/Documents/workspace/UTP6_WG_S15429/zad1 with class loader sun.misc.Launcher$AppClassLoader@2a139a55 
+Loaded from file:/Users/kogut/Documents/workspace/UTP6_WG_S15429/src/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_121-b13
+user.dir=/Users/kogut/Documents/workspace/UTP6_WG_S15429
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.13.5
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
